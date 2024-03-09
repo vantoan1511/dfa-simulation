@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo trạm thu phí</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/styles.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Trạm thu phí</h1>
+    <div class="row mt-3">
+
+        <div th:if="${message != null}"
+             class="alert alert-danger"
+             role="alert">
+            <b th:text="${message.text}"></b>
+        </div>
+
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>Máy thu phí</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-6 text-center">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-6"><b>Xu đã nhận</b></label>
+                                <label class="col-md-6" th:text="${machine.insertedCoins}"></label>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-6"><b>Trạng thái thanh gác</b></label>
+                                <label th:if="${machine.insertedCoins >= 25}"
+                                       class="col-md-6 text-success">Opening</label>
+                                <label th:unless="${machine.insertedCoins >= 25}"
+                                       class="col-md-6 text-danger">Closed</label>
+                            </div>
+                        </div>
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="col">
+            <a th:href="@{/insert?coins=5}" class="btn btn-success">Insert 5 coins</a>
+        </div>
+        <div class="col">
+            <a th:href="@{/insert?coins=10}" class="btn btn-success">Insert 10 coins</a>
+        </div>
+        <div class="col">
+            <a th:href="@{/insert?coins=25}" class="btn btn-success">Insert 25 coins</a>
+        </div>
+        <div class="col">
+            <a th:href="@{/reset}" class="btn btn-danger">Reset</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/jquery/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/dist/js/main.js}"></script>
+</body>
+</html>
